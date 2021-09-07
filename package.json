@@ -3,19 +3,34 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@craco/craco": "^6.2.0",
+    "@emotion/react": "^11.4.1",
+    "@heroicons/react": "^1.0.4",
+    "@nivo/bar": "^0.73.1",
+    "@nivo/bump": "^0.73.0",
+    "@nivo/core": "^0.73.0",
+    "@nivo/line": "^0.73.0",
+    "@nivo/pie": "^0.73.0",
+    "@nivo/scatterplot": "^0.73.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-grid-layout": "^1.2.5",
+    "react-resizable": "^3.0.4",
     "react-scripts": "4.0.3",
+    "react-spinners": "^0.11.0",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "react-scripts eject",
+    "lint": "yarn add -D prettier && yarn add -D babel-eslint && npx install-peerdeps --dev eslint-config-airbnb && yarn add -D eslint-config-prettier eslint-plugin-prettier"
   },
   "eslintConfig": {
     "extends": [
@@ -34,5 +49,20 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "autoprefixer": "^9",
+    "babel-eslint": "^10.1.0",
+    "eslint": "7.2.0",
+    "eslint-config-airbnb": "18.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-jsx-a11y": "6.4.1",
+    "eslint-plugin-prettier": "^3.4.1",
+    "eslint-plugin-react": "7.21.5",
+    "eslint-plugin-react-hooks": "1.7.0",
+    "postcss": "^7",
+    "prettier": "^2.3.2",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
   }
 }
