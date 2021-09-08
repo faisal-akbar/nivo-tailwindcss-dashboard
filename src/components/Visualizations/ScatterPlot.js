@@ -6,7 +6,9 @@ import { chartThemeDark, chartThemeLight } from '../Theme/chartTheme';
 import { ThemeContext } from '../Theme/themeContext';
 
 const ScatterPlot = () => {
-    const { scatterChartData } = useAPI();
+    const { scatterChartData, scatterChartWithDimensionData } = useAPI();
+    console.log(scatterChartWithDimensionData);
+    console.log(scatterChartData);
     const { theme } = useContext(ThemeContext);
 
     return (
@@ -20,6 +22,7 @@ const ScatterPlot = () => {
                 xFormat={(e) => `$${Math.round(e)}`}
                 yScale={{ type: 'linear', min: 0, max: 'auto' }}
                 yFormat={(e) => `$${Math.round(e)}`}
+                colors={{ scheme: 'nivo' }}
                 blendMode="normal"
                 axisTop={null}
                 axisRight={null}

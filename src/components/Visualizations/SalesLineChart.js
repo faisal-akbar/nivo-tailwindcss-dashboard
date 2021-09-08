@@ -6,9 +6,10 @@ import { chartThemeDark, chartThemeLight } from '../Theme/chartTheme';
 import { ThemeContext } from '../Theme/themeContext';
 
 const SalesLineChart = () => {
-    const { lineChartData } = useAPI();
+    const { lineChartData, multiLineChartData } = useAPI();
     const customDate = (date, format = 'MMM DD, YY') => moment(date).format(format);
-    // console.log(customDate);
+    console.log(lineChartData);
+    console.log(multiLineChartData);
     // console.log('group by region and d', test);
 
     const { theme } = useContext(ThemeContext);

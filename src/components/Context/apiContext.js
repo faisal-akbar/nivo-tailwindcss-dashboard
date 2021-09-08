@@ -4,12 +4,15 @@ import moment from 'moment';
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import {
     areaBumpDataFunc,
-    barChartDataFunc,
     barChartTopDataFunc,
+    dateFormattedData,
     lineChartDataFunc,
+    multiLineChartDataFunc,
     pieChartDataFunc,
+    scatterChartFunc,
+    scatterChartWithDimensionFunc,
     // eslint-disable-next-line prettier/prettier
-    scatterChartFunc
+    stackedBarChartDataFunc
 } from '../../utils/dataPrep';
 
 const APIContext = createContext();
@@ -62,12 +65,46 @@ function APIContextProvider({ children }) {
         (a, b) => new Date(a.Order_Date).getTime() - new Date(b.Order_Date).getTime()
     );
 
-    const lineChartData = lineChartDataFunc(sortedData);
-    const pieChartData = pieChartDataFunc(sortedData);
-    const scatterChartData = scatterChartFunc(sortedData);
-    const areaBumpData = areaBumpDataFunc(sortedData);
-    const barChartData = barChartDataFunc(sortedData);
-    const barChartTopData = barChartTopDataFunc(sortedData);
+    const dateFormatChangedData = dateFormattedData(sortedData, 'Order_Date');
+    const dateFormatChangedDataAreaBump = dateFormattedData(
+        sortedData,
+        'Order_Date',
+        'month',
+        'MMM'
+    );
+
+    // Prepare Chart Data:
+    const lineChartData = lineChartDataFunc(sortedData, 'Order_Date', 'Sales');
+    const multiLineChartData = multiLineChartDataFunc(
+        dateFormatChangedData,
+        'Region',
+        'Order_Date',
+        'Sales'
+    );
+    const pieChartData = pieChartDataFunc(sortedData, 'Region', 'Sales');
+    const scatterChartData = scatterChartFunc(sortedData, 'Sales', 'Profit');
+    const scatterChartWithDimensionData = scatterChartWithDimensionFunc(
+        sortedData,
+        'Region',
+        'Sales',
+        'Profit'
+    );
+    const areaBumpData = areaBumpDataFunc(
+        dateFormatChangedDataAreaBump,
+        'Region',
+        'Order_Date',
+        'Sales'
+    );
+    // const barChartData = stackedBarChartDataFunc(sortedData);
+    const barChartData = stackedBarChartDataFunc(
+        dateFormatChangedData,
+        'Order_Date',
+        'Region',
+        'Sales'
+    );
+    // eslint-disable-next-line no-undef
+    // const barChartTopData = barChartTopDataFunc(sortedData);
+    const barChartTopData = barChartTopDataFunc(sortedData, 'Sub_Category', 'Sales');
 
     return (
         <APIContext.Provider
@@ -76,9 +113,11 @@ function APIContextProvider({ children }) {
                 isLoading,
                 pieChartData,
                 scatterChartData,
+                scatterChartWithDimensionData,
                 areaBumpData,
                 barChartData,
                 barChartTopData,
+                multiLineChartData,
             }}
         >
             {children}
@@ -121,6 +160,7 @@ export function useAPI() {
 // );
 // .reverse();
 
+// Multi LineChart
 // Group by multiple keys (region, order date) and sum of sales:
 // const monthYearData = sortedData.map((d) => {
 //     const properties = {

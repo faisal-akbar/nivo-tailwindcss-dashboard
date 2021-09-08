@@ -6,6 +6,7 @@ import { ThemeContext } from '../Theme/themeContext';
 
 const BarChartSubCategory = () => {
     const { barChartTopData } = useAPI();
+    console.log(barChartTopData);
     const { theme } = useContext(ThemeContext);
 
     return (

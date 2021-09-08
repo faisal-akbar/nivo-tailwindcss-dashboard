@@ -9,6 +9,8 @@ const BarChart = () => {
     const { barChartData } = useAPI();
     const { theme } = useContext(ThemeContext);
 
+    console.log('Stacked', barChartData);
+
     return (
         <>
             <h3 className="chart-title">Monthly Sales Comparison</h3>
