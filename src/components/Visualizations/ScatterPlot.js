@@ -6,24 +6,30 @@ import { chartThemeDark, chartThemeLight } from '../Theme/chartTheme';
 import { ThemeContext } from '../Theme/themeContext';
 
 const ScatterPlot = () => {
-    const { scatterChartData, scatterChartWithDimensionData } = useAPI();
+    const { scatterChartData, scatterChartWithDimensionData, sortedData } = useAPI();
     console.log(scatterChartWithDimensionData);
-    console.log(scatterChartData);
+    console.log('Scatter', scatterChartData);
     const { theme } = useContext(ThemeContext);
+
+    const min = Math.min(...sortedData.map((item) => item.Sales));
+    const max = Math.max(...sortedData.map((item) => item.Sales));
+    console.log('min max', min, max);
 
     return (
         <>
             <h3 className="chart-title">Profit vs Sales by Region</h3>
             <ResponsiveScatterPlot
-                data={scatterChartData}
+                data={scatterChartWithDimensionData}
                 margin={{ top: 60, right: 140, bottom: 70, left: 90 }}
                 theme={theme === 'dark' ? chartThemeDark : chartThemeLight}
                 xScale={{ type: 'linear', min: 0, max: 'auto' }}
                 xFormat={(e) => `$${Math.round(e)}`}
-                yScale={{ type: 'linear', min: 0, max: 'auto' }}
+                yScale={{ type: 'linear', min: 'auto', max: 'auto' }}
                 yFormat={(e) => `$${Math.round(e)}`}
-                colors={{ scheme: 'nivo' }}
+                colors={theme === 'dark' ? { scheme: 'paired' } : { scheme: 'nivo' }}
+                // colors={theme === 'dark' ? ['#00C49F'] : ['#0088FE']}
                 blendMode="normal"
+                nodeSize={(e) => ((e.x - min) / (max - min)) * 40}
                 axisTop={null}
                 axisRight={null}
                 axisBottom={{
@@ -67,6 +73,19 @@ const ScatterPlot = () => {
                         ],
                     },
                 ]}
+                tooltip={(e) => (
+                    // console.log(e);
+                    <div className="relative">
+                        <div className="tooltip">
+                            <div>Sales: {e.node.data.formattedX} </div>
+
+                            <div>Profit: {e.node.data.formattedY}</div>
+                        </div>
+                        <svg className="tooltip-arrow" width="8" height="8">
+                            <rect x="12" y="-10" width="8" height="8" transform="rotate(45)" />
+                        </svg>
+                    </div>
+                )}
             />
         </>
     );

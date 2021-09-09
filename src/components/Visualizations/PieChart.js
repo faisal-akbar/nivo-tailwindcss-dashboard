@@ -1,3 +1,6 @@
+/* eslint-disable func-names */
+/* eslint-disable no-undef */
+/* eslint-disable react/jsx-no-bind */
 import { ResponsivePie } from '@nivo/pie';
 import { useContext } from 'react';
 import { useAPI } from '../Context/apiContext';
@@ -25,6 +28,7 @@ const PieChart = () => {
                 arcLinkLabelsColor={{ from: 'color' }}
                 arcLabelsSkipAngle={10}
                 arcLabelsTextColor={{ from: 'color', modifiers: [['darker', 2]] }}
+                colors={theme === 'dark' ? { scheme: 'paired' } : { scheme: 'nivo' }}
                 defs={[
                     {
                         id: 'dots',
@@ -96,6 +100,19 @@ const PieChart = () => {
                     },
                 ]}
                 legends={[]}
+                tooltip={(e) => (
+                    // console.log(e);
+                    <div className="relative">
+                        <div className="tooltip">
+                            <div>Region: {e.datum.id}</div>
+                            <div>Sales: {e.datum.formattedValue}</div>
+                        </div>
+                        <svg className="tooltip-arrow" width="8" height="8">
+                            <rect x="12" y="-10" width="8" height="8" transform="rotate(45)" />
+                        </svg>
+                    </div>
+                )}
+                onClick={(n, e) => console.log(n, e)}
             />
         </>
     );

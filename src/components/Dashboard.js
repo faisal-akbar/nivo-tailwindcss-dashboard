@@ -41,11 +41,12 @@ const Dashboard = () => {
                     <div className="chart-card" key="4" data-grid={{ x: 2, y: 0, w: 2, h: 3 }}>
                         <PieChart />
                     </div>
-                    <div className="chart-card" key="5" data-grid={{ x: 0, y: 3, w: 2, h: 3 }}>
-                        <BarChartSubCategory />
-                    </div>
-                    <div className="chart-card" key="6" data-grid={{ x: 2, y: 3, w: 2, h: 3 }}>
+
+                    <div className="chart-card" key="6" data-grid={{ x: 0, y: 3, w: 2, h: 3 }}>
                         <ScatterPlot />
+                    </div>
+                    <div className="chart-card" key="5" data-grid={{ x: 2, y: 3, w: 2, h: 3 }}>
+                        <BarChartSubCategory />
                     </div>
                 </ResponsiveGridLayout>
             ) : (

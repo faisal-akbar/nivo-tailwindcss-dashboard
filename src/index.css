@@ -13,3 +13,11 @@ body {
 .chart-title {
   @apply ml-5 text-lg font-semibold dark:text-white;
 }
+
+.tooltip {
+  @apply absolute top-0 z-10 w-48 p-2 -mt-1 text-sm leading-tight dark:text-white transform -translate-x-1/2 -translate-y-full dark:bg-gray-600 bg-gray-100 text-gray-900 rounded-lg shadow-lg;
+}
+
+.tooltip-arrow {
+  @apply absolute z-10 w-6 h-6 dark:text-gray-600 text-gray-100 transform -translate-x-1/2 -translate-y-3 fill-current stroke-current;
+}

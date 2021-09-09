@@ -1,18 +1,20 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable camelcase */
 import moment from 'moment';
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import {
     areaBumpDataFunc,
     barChartTopDataFunc,
     dateFormattedData,
+    initialValueStackedBar,
     lineChartDataFunc,
     multiLineChartDataFunc,
     pieChartDataFunc,
     scatterChartFunc,
     scatterChartWithDimensionFunc,
+    stackedBarChartDataFunc,
     // eslint-disable-next-line prettier/prettier
-    stackedBarChartDataFunc
+    uniqueArray
 } from '../../utils/dataPrep';
 
 const APIContext = createContext();
@@ -95,12 +97,16 @@ function APIContextProvider({ children }) {
         'Order_Date',
         'Sales'
     );
+
+    const uniqueArrayRegion = uniqueArray(dateFormatChangedData);
+    const initialValueObj = initialValueStackedBar(uniqueArrayRegion);
     // const barChartData = stackedBarChartDataFunc(sortedData);
     const barChartData = stackedBarChartDataFunc(
         dateFormatChangedData,
         'Order_Date',
         'Region',
-        'Sales'
+        'Sales',
+        initialValueObj
     );
     // eslint-disable-next-line no-undef
     // const barChartTopData = barChartTopDataFunc(sortedData);
@@ -116,8 +122,10 @@ function APIContextProvider({ children }) {
                 scatterChartWithDimensionData,
                 areaBumpData,
                 barChartData,
+                initialValueObj,
                 barChartTopData,
                 multiLineChartData,
+                sortedData,
             }}
         >
             {children}

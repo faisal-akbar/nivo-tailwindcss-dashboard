@@ -65,17 +65,13 @@ const SalesLineChart = () => {
                     console.log(date);
                     return (
                         <div className="relative">
-                            <div className="absolute top-0 z-10 w-64 p-2 -mt-1 text-sm leading-tight text-white transform -translate-x-1/2 -translate-y-full bg-gray-600 rounded-lg shadow-lg">
+                            <div className="tooltip">
                                 <div>Month: {customDate(date, 'MMM, YY')}</div>
                                 {slice.points.map((point) => (
                                     <div>Sales: {point.data.yFormatted}</div>
                                 ))}
                             </div>
-                            <svg
-                                className="absolute z-10 w-6 h-6 text-gray-600 transform -translate-x-1/2 -translate-y-3 fill-current stroke-current"
-                                width="8"
-                                height="8"
-                            >
+                            <svg className="tooltip-arrow" width="8" height="8">
                                 <rect x="12" y="-10" width="8" height="8" transform="rotate(45)" />
                             </svg>
                         </div>

@@ -44,7 +44,9 @@ export const chartThemeLight = {
         text: {},
     },
     labels: {
-        text: {},
+        text: {
+            fontSize: 12,
+        },
     },
     markers: {
         lineColor: '#000000',
@@ -159,7 +161,7 @@ export const chartThemeDark = {
         text: {},
     },
     labels: {
-        text: {},
+        text: { fontSize: 12 },
     },
     markers: {
         lineColor: '#000000',

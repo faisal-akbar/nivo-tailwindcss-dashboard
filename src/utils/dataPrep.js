@@ -1,3 +1,5 @@
+/* eslint-disable no-return-assign */
+/* eslint-disable no-sequences */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-param-reassign */
 /* eslint-disable camelcase */
@@ -19,6 +21,13 @@ export const dateFormattedData = (data, date, dateFrequency = 'month', format = 
     });
     return changedDateFormat;
 };
+
+//
+export const uniqueArray = (data) => [...new Set(data.map((item) => item.Region))]; // ['A', 'B', 'C']
+// Assign 0 as the initial value for each property if ?? not met and making object {A: 0, B: 0, C: 0}
+export const initialValueStackedBar = (data) =>
+    data.reduce((acc, curr) => ((acc[curr] = 0), acc), {});
+
 // ==================================SINGLE LINE CHART====================================
 export const lineChartDataFunc = (data, dateDimension, measureName) => {
     const measureByDateGroup = _(data)
@@ -87,7 +96,13 @@ export const pieChartDataFunc = (data, dimensionName, measureName) => {
 
 // ==================================STACKED BAR CHART====================================:
 // eslint-disable-next-line import/prefer-default-export
-export const stackedBarChartDataFunc = (data, dimensionName1, dimensionName2, measureName) => {
+export const stackedBarChartDataFunc = (
+    data,
+    dimensionName1,
+    dimensionName2,
+    measureName,
+    initial
+) => {
     const stackedBarChartData = Object.values(
         data.reduce(
             (
@@ -98,15 +113,11 @@ export const stackedBarChartDataFunc = (data, dimensionName1, dimensionName2, me
                     [measureName]: measure,
                 }
             ) => {
-                r[dimension1] === undefined || r[dimension1] === null
-                    ? (r[dimension1] = {
-                          [dimensionName1]: dimension1,
-                          East: 0,
-                          South: 0,
-                          Central: 0,
-                          West: 0,
-                      })
-                    : (r[dimension1][dimension2] += measure);
+                r[dimension1] ??= {
+                    [dimensionName1]: dimension1,
+                    ...initial,
+                };
+                r[dimension1][dimension2] += measure;
                 return r;
             },
             {}
@@ -297,16 +308,21 @@ export const barChartTopDataFunc = (data, dimensionName, measureName, top = 5) =
 //     const stackedBarChartData = Object.values(
 //         data.reduce((r, { Order_Date, Region, Sales }) => {
 //             const date = Order_Date.substr(0, 7);
-// // r[date] ??= { Order_Date: date, East: 0, South: 0, Central: 0, West: 0 };
-//             r[date] === undefined || r[date] === null
-//                 ? (r[date] = { Order_Date: date, East: 0, South: 0, Central: 0, West: 0 })
-//                 : (r[date][Region] += Sales);
+//             r[date] ??= { Order_Date: date, East: 0, South: 0, Central: 0, West: 0 };
+//             r[date][Region] += Sales;
 //             return r;
 //         }, {})
 //     );
 //     return stackedBarChartData;
 // };
 
+// Just for reference
+// const initialStackedBar = {
+//     East: 0,
+//     South: 0,
+//     Central: 0,
+//     West: 0,
+// };
 // ==================================AREA BUMP CHART====================================:
 
 // export const areaBumpDataFunc = (data) => {

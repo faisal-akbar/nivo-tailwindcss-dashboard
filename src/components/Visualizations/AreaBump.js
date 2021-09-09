@@ -16,7 +16,7 @@ const AreaBump = () => {
                 margin={{ top: 40, right: 100, bottom: 40, left: 100 }}
                 theme={theme === 'dark' ? chartThemeDark : chartThemeLight}
                 spacing={8}
-                colors={{ scheme: 'nivo' }}
+                colors={theme === 'dark' ? { scheme: 'paired' } : { scheme: 'nivo' }}
                 blendMode="normal"
                 fillOPacity={0.1}
                 defs={[
@@ -69,6 +69,19 @@ const AreaBump = () => {
                     legend: '',
                     legendPosition: 'middle',
                     legendOffset: 32,
+                }}
+                tooltip={(e) => {
+                    console.log(e);
+                    return (
+                        <div className="relative">
+                            <div className="tooltip">
+                                <div>Region: {e.serie.id}</div>
+                            </div>
+                            <svg className="tooltip-arrow" width="8" height="8">
+                                <rect x="12" y="-10" width="8" height="8" transform="rotate(45)" />
+                            </svg>
+                        </div>
+                    );
                 }}
             />
         </>
