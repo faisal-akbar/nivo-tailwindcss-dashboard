@@ -6,7 +6,7 @@ import PreLoader from './PreLoader';
 import Filters from './SelectOptions/Filters';
 import AreaBump from './Visualizations/AreaBump';
 import BarChart from './Visualizations/BarChart';
-import MultiLineChart from './Visualizations/MultiLineChart';
+import MultiLineChartLatestMonth from './Visualizations/MultiLineChartLatestMonth';
 // import LineChart from './Visualizations/LineChart';
 import PieChart from './Visualizations/PieChart';
 import ScatterPlot from './Visualizations/ScatterPlot';
@@ -41,8 +41,11 @@ const Dashboard = () => {
                     <div className="chart-card" key="1" data-grid={{ x: 0, y: 0, w: 2, h: 3 }}>
                         <PieChart />
                     </div>
-                    <div className="chart-card" key="2" data-grid={{ x: 2, y: 0, w: 2, h: 3 }}>
+                    {/* <div className="chart-card" key="2" data-grid={{ x: 2, y: 0, w: 2, h: 3 }}>
                         <MultiLineChart />
+                    </div> */}
+                    <div className="chart-card" key="2" data-grid={{ x: 2, y: 0, w: 2, h: 3 }}>
+                        <MultiLineChartLatestMonth />
                     </div>
                     <div className="chart-card" key="3" data-grid={{ x: 0, y: 2, w: 2, h: 3 }}>
                         <AreaBump />

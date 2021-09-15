@@ -7,24 +7,24 @@ import { chartThemeDark, chartThemeLight } from '../Theme/chartTheme';
 import { ThemeContext } from '../Theme/themeContext';
 
 const MultiLineChartLatestMonth = () => {
-    const { multiLineChartData } = useAPI();
+    const { latestMonthMultiLineChartData } = useAPI();
     const customDate = (date, format = 'MMM DD, YY') => moment(date).format(format);
 
-    console.log(multiLineChartData);
+    console.log('latest', latestMonthMultiLineChartData);
     // console.log('group by region and d', test);
 
     const { theme } = useContext(ThemeContext);
     return (
         <>
-            <h3 className="chart-title">Monthly Sales</h3>
+            <h3 className="chart-title">Latest Month Sales</h3>
             <ResponsiveLine
-                data={multiLineChartData}
+                data={latestMonthMultiLineChartData}
                 margin={{ top: 50, right: 60, bottom: 60, left: 60 }}
                 theme={theme === 'dark' ? chartThemeDark : chartThemeLight}
                 // For Date field use following instead of xScale Point
-                // xScale={{ type: 'time', format: '%Y-%m-%d' }}
-                // xFormat="time:%Y-%m-%d"
-                xScale={{ type: 'point' }}
+                xScale={{ type: 'time', format: '%Y-%m-%d', useUTC: false, precision: 'day' }}
+                xFormat="time:%Y-%m-%d"
+                // xScale={{ type: 'point' }}
                 yScale={{
                     type: 'linear',
                     min: 'auto',
@@ -40,14 +40,14 @@ const MultiLineChartLatestMonth = () => {
                     tickSize: 5,
                     tickPadding: 5,
                     tickRotation: 0,
-                    legend: 'Month of Order Date',
+                    legend: 'Order Date',
                     legendOffset: 35,
                     legendPosition: 'middle',
                     // For Date field use these additional properties
-                    // tickValues: 'every 7 day',
+                    tickValues: 'every 7 day',
                     // tickValues: 'every month',
-                    // format: (tick) => moment(tick).format('MMM DD, YY'),
-                    format: (tick) => moment(tick).format('MMM'),
+                    format: (tick) => moment(tick).format('MMM DD, YY'),
+                    // format: (tick) => moment(tick).format('MMM'),
                 }}
                 axisLeft={{
                     orient: 'left',
@@ -60,38 +60,18 @@ const MultiLineChartLatestMonth = () => {
                     // labelFormat: '.0s',
                     format: (d) => `${d / 1000}K`,
                 }}
-                tooltip={({ point }) => {
-                    console.log(point);
-                    return (
-                        <div className="relative">
-                            <div className="tooltip">
-                                <div>Month: {customDate(point.data.xFormatted, 'MMM, YY')}</div>
-                                <div>Sales: {point.data.yFormatted}</div>
-                            </div>
-                            <svg className="tooltip-arrow" width="8" height="8">
-                                <rect x="12" y="-10" width="8" height="8" transform="rotate(45)" />
-                            </svg>
+                tooltip={({ point }) => (
+                    // console.log(point);
+                    <div className="relative">
+                        <div className="tooltip">
+                            <div>Month: {customDate(point.data.xFormatted, 'MMM DD, YY')}</div>
+                            <div>Sales: {point.data.yFormatted}</div>
                         </div>
-                    );
-                }}
-                // enableSlices="x"
-                // sliceTooltip={({ slice }) => {
-                //     const date = slice.points[0].data.xFormatted;
-                //     console.log('multiline chart tooltip', slice);
-                //     return (
-                //         <div className="relative">
-                //             <div className="tooltip">
-                //                 <div>Month: {customDate(date, 'MMM, YY')}</div>
-                //                 {slice.points.map((point) => (
-                //                     <div>Sales: {point.data.yFormatted}</div>
-                //                 ))}
-                //             </div>
-                //             <svg className="tooltip-arrow" width="8" height="8">
-                //                 <rect x="12" y="-10" width="8" height="8" transform="rotate(45)" />
-                //             </svg>
-                //         </div>
-                //     );
-                // }}
+                        <svg className="tooltip-arrow" width="8" height="8">
+                            <rect x="12" y="-10" width="8" height="8" transform="rotate(45)" />
+                        </svg>
+                    </div>
+                )}
                 colors={theme === 'dark' ? getColorDark : getColorLight}
                 pointSize={6}
                 pointColor={{ from: 'color', modifiers: [] }}

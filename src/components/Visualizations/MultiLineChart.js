@@ -7,11 +7,10 @@ import { chartThemeDark, chartThemeLight } from '../Theme/chartTheme';
 import { ThemeContext } from '../Theme/themeContext';
 
 const MultiLineChart = () => {
-    const { multiLineChartData, latestMonthMultiLine } = useAPI();
+    const { multiLineChartData } = useAPI();
     const customDate = (date, format = 'MMM DD, YY') => moment(date).format(format);
 
-    console.log(multiLineChartData);
-    console.log('latest', latestMonthMultiLine);
+    console.log('multi', multiLineChartData);
     // console.log('group by region and d', test);
 
     const { theme } = useContext(ThemeContext);

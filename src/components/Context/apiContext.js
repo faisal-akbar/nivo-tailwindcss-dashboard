@@ -90,6 +90,12 @@ function APIContextProvider({ children }) {
     const latestMonthMultiLine = sortedData.filter(
         (d) => d.Order_Date.slice(0, 7) === sortedData[sortedData.length - 1].Order_Date.slice(0, 7)
     );
+    const latestMonthMultiLineChartData = multiLineChartDataFunc(
+        latestMonthMultiLine,
+        'Region',
+        'Order_Date',
+        'Sales'
+    );
 
     // Prepare Chart Data:
     const lineChartData = lineChartDataFunc(sortedData, 'Order_Date', 'Sales');
@@ -141,7 +147,7 @@ function APIContextProvider({ children }) {
                 initialValueObj,
                 barChartTopData,
                 multiLineChartData,
-                latestMonthMultiLine,
+                latestMonthMultiLineChartData,
                 sortedData,
                 // Filter
                 setSelectedYear,
