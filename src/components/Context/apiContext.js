@@ -1,6 +1,12 @@
 import moment from 'moment';
 import { createContext, useContext, useEffect, useState } from 'react';
-import { regionOptions, segmentOptions, yearOptions } from '../../reactSelectData/data';
+import {
+    categoryOptions,
+    regionOptions,
+    segmentOptions,
+    // eslint-disable-next-line prettier/prettier
+    yearOptions
+} from '../../reactSelectData/data';
 import {
     areaBumpDataFunc,
     barChartTopDataFunc,
@@ -28,10 +34,11 @@ function APIContextProvider({ children }) {
     const [selectedYear, setSelectedYear] = useState(yearOptions[0]);
     const [selectedRegion, setSelectedRegion] = useState(regionOptions);
     const [selectedSegment, setSelectedSegment] = useState(segmentOptions);
-    console.log(selectedSegment);
+    const [selectedCategory, setSelectedCategory] = useState(categoryOptions);
 
     const segmentArray = selectedSegment.map((item) => item.value);
     const regionArray = selectedRegion.map((item) => item.value);
+    const categoryArray = selectedCategory.map((item) => item.value);
 
     // Fetch data
     const getData = () => {
@@ -71,7 +78,8 @@ function APIContextProvider({ children }) {
         (d) =>
             moment(d.Order_Date).startOf('year').format('YYYY') === selectedYear.value &&
             segmentArray.includes(d.Segment) &&
-            regionArray.includes(d.Region)
+            regionArray.includes(d.Region) &&
+            categoryArray.includes(d.Category)
     );
 
     // Sort data by Order Date
@@ -155,6 +163,8 @@ function APIContextProvider({ children }) {
                 setSelectedSegment,
                 selectedRegion,
                 setSelectedRegion,
+                selectedCategory,
+                setSelectedCategory,
                 isFilter,
                 setIsFilter,
             }}

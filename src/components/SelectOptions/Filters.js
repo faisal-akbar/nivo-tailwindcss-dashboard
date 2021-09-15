@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import {
+    categoryOptions,
     regionOptions,
     regionOptionsLight,
     segmentOptions,
@@ -9,7 +10,7 @@ import {
 import { useAPI } from '../Context/apiContext';
 import { ThemeContext } from '../Theme/themeContext';
 import MultiSelect from './MultiSelect';
-import SelectOptions from './SelectOptions';
+import SingleSelect from './singleSelect';
 
 const Filters = () => {
     const {
@@ -18,34 +19,57 @@ const Filters = () => {
         selectedSegment,
         selectedRegion,
         setSelectedRegion,
+        selectedCategory,
+        setSelectedCategory,
     } = useAPI();
     const { theme } = useContext(ThemeContext);
     return (
-        <div className=" absolute right-0 top-14 flex flex-col space-y-3 w-96 dark:bg-gray-700 bg-gray-300 shadow-md p-2 my-3 z-20 transition-all">
-            <div className="dark:text-white border-b-2 border-gray-800 dark:border-gray-100">
+        <div className=" absolute right-0 top-14 flex flex-col space-y-3 w-[100] dark:bg-gray-700 bg-gray-300 shadow-md px-2 py-3 my-3 z-20 transition-all">
+            <div className="text-gray-900 dark:text-white border-b-2 border-gray-800 dark:border-gray-100">
                 Filters
             </div>
-            <SelectOptions
-                className="w-[90]"
-                options={yearOptions}
-                defaultValue={yearOptions[0]}
-                filterOptions={yearOptions}
-                changeFilter={setSelectedYear}
-            />
-            <MultiSelect
-                className="w-[90]"
-                filterOptions={theme === 'dark' ? regionOptions : regionOptionsLight}
-                value={selectedRegion}
-                setValue={setSelectedRegion}
-                name="Segment"
-            />
-            <MultiSelect
-                className="w-[90]"
-                filterOptions={segmentOptions}
-                value={selectedSegment}
-                setValue={setSelectedSegment}
-                name="Segment"
-            />
+            <div className="flex flex-col divide-y-2 divide-gray-200 dark:divide-gray-600">
+                <div className="mb-2">
+                    <div className="text-gray-900 dark:text-white my-2 ml-1">Year</div>
+                    <SingleSelect
+                        className="w-96"
+                        options={yearOptions}
+                        defaultValue={yearOptions[0]}
+                        filterOptions={yearOptions}
+                        changeFilter={setSelectedYear}
+                    />
+                </div>
+                <div className="my-2">
+                    <div className="text-gray-900 dark:text-white my-2 ml-1">Region</div>
+                    <MultiSelect
+                        className="w-96"
+                        filterOptions={theme === 'dark' ? regionOptions : regionOptionsLight}
+                        value={selectedRegion}
+                        setValue={setSelectedRegion}
+                        name="Region"
+                    />
+                </div>
+                <div className="my-2">
+                    <div className="text-gray-900 dark:text-white my-2 ml-1">Segment</div>
+                    <MultiSelect
+                        className="w-96"
+                        filterOptions={segmentOptions}
+                        value={selectedSegment}
+                        setValue={setSelectedSegment}
+                        name="Segment"
+                    />
+                </div>
+                <div className="my-2">
+                    <div className="text-gray-900 dark:text-white my-2 ml-1">Category</div>
+                    <MultiSelect
+                        className="w-96"
+                        filterOptions={categoryOptions}
+                        value={selectedCategory}
+                        setValue={setSelectedCategory}
+                        name="Category"
+                    />
+                </div>
+            </div>
         </div>
     );
 };

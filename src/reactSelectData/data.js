@@ -7,9 +7,15 @@ export const yearOptions = [
 ];
 
 export const segmentOptions = [
-    { value: 'Consumer', label: 'Consumer', color: '#253858' },
+    { value: 'Consumer', label: 'Consumer', color: '#5243AA' },
     { value: 'Corporate', label: 'Corporate', color: '#5243AA' },
-    { value: 'Home Office', label: 'Home Office', color: '#666666' },
+    { value: 'Home Office', label: 'Home Office', color: '#5243AA' },
+];
+
+export const categoryOptions = [
+    { value: 'Furniture', label: 'Furniture', color: '#253858' },
+    { value: 'Office Supplies', label: 'Office Supplies', color: '#253858' },
+    { value: 'Technology', label: 'Technology', color: '#253858' },
 ];
 
 export const regionOptions = [

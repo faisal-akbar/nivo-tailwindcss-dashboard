@@ -1,7 +1,7 @@
 import React from 'react';
 import Select from 'react-select';
 
-const SelectOptions = ({ defaultValue, filterOptions, changeFilter, ...rest }) => (
+const SingleSelect = ({ defaultValue, filterOptions, changeFilter, ...rest }) => (
     <Select
         defaultValue={defaultValue}
         label="Single select"
@@ -20,4 +20,4 @@ const SelectOptions = ({ defaultValue, filterOptions, changeFilter, ...rest }) =
     />
 );
 
-export default SelectOptions;
+export default SingleSelect;
