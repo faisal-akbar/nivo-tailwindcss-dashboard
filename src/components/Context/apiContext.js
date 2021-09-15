@@ -1,13 +1,6 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable camelcase */
 import moment from 'moment';
 import { createContext, useContext, useEffect, useState } from 'react';
-import {
-    regionOptions,
-    segmentOptions,
-    // eslint-disable-next-line prettier/prettier
-    yearOptions
-} from '../../reactSelectData/data';
+import { regionOptions, segmentOptions, yearOptions } from '../../reactSelectData/data';
 import {
     areaBumpDataFunc,
     barChartTopDataFunc,
@@ -94,6 +87,10 @@ function APIContextProvider({ children }) {
         'MMM'
     );
 
+    const latestMonthMultiLine = sortedData.filter(
+        (d) => d.Order_Date.slice(0, 7) === sortedData[sortedData.length - 1].Order_Date.slice(0, 7)
+    );
+
     // Prepare Chart Data:
     const lineChartData = lineChartDataFunc(sortedData, 'Order_Date', 'Sales');
     const multiLineChartData = multiLineChartDataFunc(
@@ -144,6 +141,7 @@ function APIContextProvider({ children }) {
                 initialValueObj,
                 barChartTopData,
                 multiLineChartData,
+                latestMonthMultiLine,
                 sortedData,
                 // Filter
                 setSelectedYear,
@@ -155,7 +153,7 @@ function APIContextProvider({ children }) {
                 setIsFilter,
             }}
         >
-            {children}
+            {children}{' '}
         </APIContext.Provider>
     );
 }
