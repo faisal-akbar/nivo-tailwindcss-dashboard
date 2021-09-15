@@ -87,6 +87,13 @@ function APIContextProvider({ children }) {
         (a, b) => new Date(a.Order_Date).getTime() - new Date(b.Order_Date).getTime()
     );
 
+    // KPIs
+    const salesKPI = filteredData.reduce((a, b) => a + b.Sales, 0);
+    const profitKPI = filteredData.reduce((a, b) => a + b.Profit, 0);
+    const discountKPI =
+        (filteredData.reduce((a, b) => a + b.Discount, 0) / filteredData.length) * 100;
+    const orderKPI = filteredData.reduce((a, b) => a + b.Quantity, 0);
+
     const dateFormatChangedData = dateFormattedData(sortedData, 'Order_Date');
     const dateFormatChangedDataAreaBump = dateFormattedData(
         sortedData,
@@ -94,7 +101,7 @@ function APIContextProvider({ children }) {
         'month',
         'MMM'
     );
-
+    // Line Chart
     const latestMonthMultiLine = sortedData.filter(
         (d) => d.Order_Date.slice(0, 7) === sortedData[sortedData.length - 1].Order_Date.slice(0, 7)
     );
@@ -145,8 +152,12 @@ function APIContextProvider({ children }) {
     return (
         <APIContext.Provider
             value={{
-                lineChartData,
                 isLoading,
+                salesKPI,
+                profitKPI,
+                discountKPI,
+                orderKPI,
+                lineChartData,
                 pieChartData,
                 scatterChartData,
                 scatterChartWithDimensionData,

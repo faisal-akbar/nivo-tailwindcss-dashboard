@@ -11,6 +11,7 @@ import MultiLineChartLatestMonth from './Visualizations/MultiLineChartLatestMont
 import PieChart from './Visualizations/PieChart';
 import ScatterPlot from './Visualizations/ScatterPlot';
 import StackedBarChart from './Visualizations/StackedBarChart';
+import StatsCard from './Visualizations/StatsCard';
 
 // Handles the responsive nature of the grid
 const ResponsiveGridLayout = WidthProvider(Responsive);
@@ -28,38 +29,41 @@ const Dashboard = () => {
     return (
         <div>
             {isFilter && <Filters />}
-            {/* <StatsCard/> */}
-            {!isLoading ? (
-                <ResponsiveGridLayout className="my-5 mx-8" breakpoints={breakpoints} cols={cols}>
-                    {/* <div data-grid={{ x: 0, y: 0, w: 2, h: 3 }}>
-                        <StatsCard />
-                    </div> */}
-                    {/* <div className="chart-card" key="1" data-grid={{ x: 0, y: 0, w: 2, h: 3 }}>
-                        <LineChart />
-                    </div> */}
 
-                    <div className="chart-card" key="1" data-grid={{ x: 0, y: 0, w: 2, h: 3 }}>
-                        <PieChart />
-                    </div>
-                    {/* <div className="chart-card" key="2" data-grid={{ x: 2, y: 0, w: 2, h: 3 }}>
+            {!isLoading ? (
+                <>
+                    <StatsCard />
+                    <ResponsiveGridLayout
+                        className="my-5 mx-8"
+                        breakpoints={breakpoints}
+                        cols={cols}
+                    >
+                        <div className="chart-card" key="1" data-grid={{ x: 0, y: 0, w: 2, h: 3 }}>
+                            <PieChart />
+                        </div>
+                        <div className="chart-card" key="2" data-grid={{ x: 2, y: 0, w: 2, h: 3 }}>
+                            <MultiLineChartLatestMonth />
+                        </div>
+                        {/* <div className="chart-card" key="2" data-grid={{ x: 2, y: 0, w: 2, h: 3 }}>
                         <MultiLineChart />
                     </div> */}
-                    <div className="chart-card" key="2" data-grid={{ x: 2, y: 0, w: 2, h: 3 }}>
-                        <MultiLineChartLatestMonth />
-                    </div>
-                    <div className="chart-card" key="3" data-grid={{ x: 0, y: 2, w: 2, h: 3 }}>
-                        <AreaBump />
-                    </div>
-                    <div className="chart-card" key="4" data-grid={{ x: 2, y: 2, w: 2, h: 3 }}>
-                        <StackedBarChart />
-                    </div>
-                    <div className="chart-card" key="5" data-grid={{ x: 0, y: 3, w: 2, h: 3 }}>
-                        <ScatterPlot />
-                    </div>
-                    <div className="chart-card" key="6" data-grid={{ x: 2, y: 3, w: 2, h: 3 }}>
-                        <BarChart />
-                    </div>
-                </ResponsiveGridLayout>
+                        <div className="chart-card" key="3" data-grid={{ x: 0, y: 2, w: 2, h: 3 }}>
+                            <AreaBump />
+                        </div>
+                        <div className="chart-card" key="4" data-grid={{ x: 2, y: 2, w: 2, h: 3 }}>
+                            <StackedBarChart />
+                        </div>
+                        <div className="chart-card" key="5" data-grid={{ x: 0, y: 3, w: 2, h: 3 }}>
+                            <ScatterPlot />
+                        </div>
+                        {/* <div className="chart-card" key="5" data-grid={{ x: 0, y: 3, w: 2, h: 3 }}>
+                        <ScatterPlotDimension />
+                    </div> */}
+                        <div className="chart-card" key="6" data-grid={{ x: 2, y: 3, w: 2, h: 3 }}>
+                            <BarChart />
+                        </div>
+                    </ResponsiveGridLayout>
+                </>
             ) : (
                 <PreLoader />
             )}

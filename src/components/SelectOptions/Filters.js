@@ -23,6 +23,12 @@ const Filters = () => {
         setSelectedCategory,
     } = useAPI();
     const { theme } = useContext(ThemeContext);
+
+    // useEffect(() => {
+    // // eslint-disable-next-line no-unused-expressions
+    // theme === 'dark' ? setSelectedRegion({}) : setSelectedRegion(regionOptionsLight);
+    // }, [selectedRegion, setSelectedRegion, theme]);
+
     return (
         <div className=" absolute right-0 top-14 flex flex-col space-y-3 w-[100] dark:bg-gray-700 bg-gray-300 shadow-md px-2 py-3 my-3 z-20 transition-all">
             <div className="text-gray-900 dark:text-white border-b-2 border-gray-800 dark:border-gray-100">
