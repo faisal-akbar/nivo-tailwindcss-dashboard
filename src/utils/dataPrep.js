@@ -23,7 +23,9 @@ export const dateFormattedData = (data, date, dateFrequency = 'month', format = 
 };
 
 //
-export const uniqueArray = (data) => [...new Set(data.map((item) => item.Region))]; // ['A', 'B', 'C']
+export const uniqueArray = (data, dimensionName) => [
+    ...new Set(data.map((item) => item[dimensionName])),
+]; // ['A', 'B', 'C']
 // Assign 0 as the initial value for each property if ?? not met and making object {A: 0, B: 0, C: 0}
 export const initialValueStackedBar = (data) =>
     data.reduce((acc, curr) => ((acc[curr] = 0), acc), {});

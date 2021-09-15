@@ -3,12 +3,15 @@
 /* eslint-disable react/jsx-no-bind */
 import { ResponsivePie } from '@nivo/pie';
 import { useContext } from 'react';
+import { getColorDark, getColorLight } from '../../utils/chartColor';
 import { useAPI } from '../Context/apiContext';
 import { ThemeContext } from '../Theme/themeContext';
 
 const PieChart = () => {
     const { pieChartData } = useAPI();
+
     const { theme } = useContext(ThemeContext);
+
     return (
         <>
             <h3 className="chart-title">Sales in Each Region</h3>
@@ -20,7 +23,7 @@ const PieChart = () => {
                 padAngle={0.7}
                 cornerRadius={3}
                 activeOuterRadiusOffset={8}
-                borderWidth={1}
+                borderWidth={0}
                 borderColor={{ from: 'color', modifiers: [['darker', 0.2]] }}
                 arcLinkLabelsSkipAngle={10}
                 arcLinkLabelsTextColor={theme === 'dark' ? `#fff` : `#333`}
@@ -28,7 +31,8 @@ const PieChart = () => {
                 arcLinkLabelsColor={{ from: 'color' }}
                 arcLabelsSkipAngle={10}
                 arcLabelsTextColor={{ from: 'color', modifiers: [['darker', 2]] }}
-                colors={theme === 'dark' ? { scheme: 'paired' } : { scheme: 'nivo' }}
+                colors={theme === 'dark' ? getColorDark : getColorLight}
+                // colors={theme === 'dark' ? { scheme: 'paired' } : { scheme: 'nivo' }}
                 defs={[
                     {
                         id: 'dots',

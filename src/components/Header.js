@@ -1,5 +1,6 @@
 import React from 'react';
 import { useAPI } from './Context/apiContext';
+import FilterToggle from './FilterToggle';
 import Toggle from './Theme/themeToggle';
 
 const Header = () => {
@@ -11,7 +12,8 @@ const Header = () => {
             <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3 md:mb-0 ml-0 md:ml-4 ">
                 Simple Superstore Dashboard
             </h3>
-            <div>
+            <div className="flex">
+                <FilterToggle />
                 <Toggle />
             </div>
         </header>

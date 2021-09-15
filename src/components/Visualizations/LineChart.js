@@ -5,7 +5,7 @@ import { useAPI } from '../Context/apiContext';
 import { chartThemeDark, chartThemeLight } from '../Theme/chartTheme';
 import { ThemeContext } from '../Theme/themeContext';
 
-const SalesLineChart = () => {
+const LineChart = () => {
     const { lineChartData, multiLineChartData } = useAPI();
     const customDate = (date, format = 'MMM DD, YY') => moment(date).format(format);
     console.log(lineChartData);
@@ -18,7 +18,7 @@ const SalesLineChart = () => {
             <h3 className="chart-title">Monthly Sales</h3>
             <ResponsiveLine
                 data={lineChartData}
-                margin={{ top: 50, right: 60, bottom: 90, left: 60 }}
+                margin={{ top: 50, right: 60, bottom: 60, left: 60 }}
                 theme={theme === 'dark' ? chartThemeDark : chartThemeLight}
                 // For Date field use following instead of xScale Point
                 // xScale={{ type: 'time', format: '%Y-%m-%d' }}
@@ -39,8 +39,8 @@ const SalesLineChart = () => {
                     tickSize: 5,
                     tickPadding: 5,
                     tickRotation: 0,
-                    legend: 'Order Date',
-                    legendOffset: 70,
+                    legend: 'Month of Order Date',
+                    legendOffset: 35,
                     legendPosition: 'middle',
                     // For Date field use these additional properties
                     // tickValues: 'every 7 day',
@@ -91,4 +91,4 @@ const SalesLineChart = () => {
     );
 };
 
-export default SalesLineChart;
+export default LineChart;

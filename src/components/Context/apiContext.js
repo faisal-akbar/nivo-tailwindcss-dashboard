@@ -3,6 +3,12 @@
 import moment from 'moment';
 import { createContext, useContext, useEffect, useState } from 'react';
 import {
+    regionOptions,
+    segmentOptions,
+    // eslint-disable-next-line prettier/prettier
+    yearOptions
+} from '../../reactSelectData/data';
+import {
     areaBumpDataFunc,
     barChartTopDataFunc,
     dateFormattedData,
@@ -23,6 +29,16 @@ function APIContextProvider({ children }) {
     // Initialize state
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [isFilter, setIsFilter] = useState(false);
+
+    // Filters
+    const [selectedYear, setSelectedYear] = useState(yearOptions[0]);
+    const [selectedRegion, setSelectedRegion] = useState(regionOptions);
+    const [selectedSegment, setSelectedSegment] = useState(segmentOptions);
+    console.log(selectedSegment);
+
+    const segmentArray = selectedSegment.map((item) => item.value);
+    const regionArray = selectedRegion.map((item) => item.value);
 
     // Fetch data
     const getData = () => {
@@ -59,7 +75,10 @@ function APIContextProvider({ children }) {
 
     // Filter data by Year
     const filteredData = newData.filter(
-        (d) => moment(d.Order_Date).startOf('year').format('YYYY') > '2020'
+        (d) =>
+            moment(d.Order_Date).startOf('year').format('YYYY') === selectedYear.value &&
+            segmentArray.includes(d.Segment) &&
+            regionArray.includes(d.Region)
     );
 
     // Sort data by Order Date
@@ -98,7 +117,7 @@ function APIContextProvider({ children }) {
         'Sales'
     );
 
-    const uniqueArrayRegion = uniqueArray(dateFormatChangedData);
+    const uniqueArrayRegion = uniqueArray(dateFormatChangedData, 'Region');
     const initialValueObj = initialValueStackedBar(uniqueArrayRegion);
     // const barChartData = stackedBarChartDataFunc(sortedData);
     const barChartData = stackedBarChartDataFunc(
@@ -126,6 +145,14 @@ function APIContextProvider({ children }) {
                 barChartTopData,
                 multiLineChartData,
                 sortedData,
+                // Filter
+                setSelectedYear,
+                selectedSegment,
+                setSelectedSegment,
+                selectedRegion,
+                setSelectedRegion,
+                isFilter,
+                setIsFilter,
             }}
         >
             {children}

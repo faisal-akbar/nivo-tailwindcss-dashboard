@@ -1,5 +1,6 @@
 import { ResponsiveAreaBump } from '@nivo/bump';
 import { useContext } from 'react';
+import { getColorDark, getColorLight } from '../../utils/chartColor';
 import { useAPI } from '../Context/apiContext';
 import { chartThemeDark, chartThemeLight } from '../Theme/chartTheme';
 import { ThemeContext } from '../Theme/themeContext';
@@ -13,10 +14,13 @@ const AreaBump = () => {
             <h3 className="chart-title">Sales by Region Over Month</h3>
             <ResponsiveAreaBump
                 data={areaBumpData}
-                margin={{ top: 40, right: 100, bottom: 40, left: 100 }}
+                margin={{ top: 40, right: 100, bottom: 60, left: 100 }}
                 theme={theme === 'dark' ? chartThemeDark : chartThemeLight}
                 spacing={8}
-                colors={theme === 'dark' ? { scheme: 'paired' } : { scheme: 'nivo' }}
+                colors={theme === 'dark' ? getColorDark : getColorLight}
+                startLabelTextColor={theme === 'dark' ? getColorDark : getColorLight}
+                endLabelTextColor={theme === 'dark' ? getColorDark : getColorLight}
+                // colors={theme === 'dark' ? { scheme: 'paired' } : { scheme: 'nivo' }}
                 blendMode="normal"
                 fillOPacity={0.1}
                 defs={[
@@ -53,6 +57,7 @@ const AreaBump = () => {
                         id: 'lines',
                     },
                 ]}
+                borderWidth={0}
                 startLabel="id"
                 axisTop={{
                     tickSize: 5,
@@ -66,9 +71,9 @@ const AreaBump = () => {
                     tickSize: 5,
                     tickPadding: 5,
                     tickRotation: 0,
-                    legend: '',
+                    legend: 'Month of Order Date',
                     legendPosition: 'middle',
-                    legendOffset: 32,
+                    legendOffset: 35,
                 }}
                 tooltip={(e) => {
                     console.log(e);
