@@ -7,7 +7,7 @@ body {
 }
 
 .chart-card {
-  @apply border border-gray-100 shadow-md rounded py-5 bg-white dark:bg-gray-800 dark:border-gray-700;
+  @apply border border-gray-100 shadow-md rounded py-5 bg-white dark:bg-gray-800 dark:border-gray-800;
 }
 
 .chart-title {
