@@ -25,12 +25,12 @@ export const regionOptions = [
     { value: 'West', label: 'West', color: '#1C4D71' },
 ];
 
-export const regionOptionsLight = [
-    { value: 'Central', label: 'Central', color: '#F4E77C' },
-    { value: 'East', label: 'East', color: '#DBBEA5' },
-    { value: 'South', label: 'South', color: '#EDB960' },
-    { value: 'West', label: 'West', color: '#F69180' },
-];
+// export const regionOptionsLight = [
+//     { value: 'Central', label: 'Central', color: '#F4E77C' },
+//     { value: 'East', label: 'East', color: '#DBBEA5' },
+//     { value: 'South', label: 'South', color: '#EDB960' },
+//     { value: 'West', label: 'West', color: '#F69180' },
+// ];
 
 export const measureOptions = [
     { value: 'Sales', label: 'Sales' },

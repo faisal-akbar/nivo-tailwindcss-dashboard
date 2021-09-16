@@ -1,14 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
     categoryOptions,
     regionOptions,
-    regionOptionsLight,
     segmentOptions,
     // eslint-disable-next-line prettier/prettier
     yearOptions
 } from '../../reactSelectData/data';
 import { useAPI } from '../Context/apiContext';
-import { ThemeContext } from '../Theme/themeContext';
 import MultiSelect from './MultiSelect';
 import SingleSelect from './singleSelect';
 
@@ -22,12 +20,6 @@ const Filters = () => {
         selectedCategory,
         setSelectedCategory,
     } = useAPI();
-    const { theme } = useContext(ThemeContext);
-
-    // useEffect(() => {
-    // // eslint-disable-next-line no-unused-expressions
-    // theme === 'dark' ? setSelectedRegion({}) : setSelectedRegion(regionOptionsLight);
-    // }, [selectedRegion, setSelectedRegion, theme]);
 
     return (
         <div className=" absolute right-0 top-14 flex flex-col space-y-3 w-[100] dark:bg-gray-700 bg-gray-300 shadow-md px-2 py-3 my-3 z-20 transition-all">
@@ -49,7 +41,7 @@ const Filters = () => {
                     <div className="text-gray-900 dark:text-white my-2 ml-1">Region</div>
                     <MultiSelect
                         className="w-96"
-                        filterOptions={theme === 'dark' ? regionOptions : regionOptionsLight}
+                        filterOptions={regionOptions}
                         value={selectedRegion}
                         setValue={setSelectedRegion}
                         name="Region"

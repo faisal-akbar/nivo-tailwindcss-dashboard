@@ -11,8 +11,8 @@ const getInitialTheme = () => {
             return 'dark';
         }
     }
-    // If you want to use dark theme as the default, return 'dark' instead
-    return 'light';
+    // If you want to use light theme as the default, return 'light' instead
+    return 'dark';
 };
 export const ThemeContext = createContext();
 export const ThemeProvider = ({ initialTheme, children }) => {

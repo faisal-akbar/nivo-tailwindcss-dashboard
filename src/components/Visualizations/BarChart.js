@@ -16,7 +16,7 @@ const BarChart = () => {
                 data={barChartTopData}
                 keys={['Sales']}
                 indexBy="Sub_Category"
-                margin={{ top: 20, right: 60, bottom: 60, left: 90 }}
+                margin={{ top: 20, right: 60, bottom: 60, left: 100 }}
                 theme={theme === 'dark' ? chartThemeDark : chartThemeLight}
                 padding={0.3}
                 layout="horizontal"
@@ -77,7 +77,7 @@ const BarChart = () => {
                     tickRotation: 0,
                     legend: 'Sub Category',
                     legendPosition: 'middle',
-                    legendOffset: -65,
+                    legendOffset: -75,
                 }}
                 labelSkipWidth={12}
                 labelSkipHeight={12}

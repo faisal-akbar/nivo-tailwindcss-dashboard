@@ -7,7 +7,6 @@ import Filters from './SelectOptions/Filters';
 import AreaBump from './Visualizations/AreaBump';
 import BarChart from './Visualizations/BarChart';
 import MultiLineChartLatestMonth from './Visualizations/MultiLineChartLatestMonth';
-// import LineChart from './Visualizations/LineChart';
 import PieChart from './Visualizations/PieChart';
 import ScatterPlot from './Visualizations/ScatterPlot';
 import StackedBarChart from './Visualizations/StackedBarChart';
@@ -22,9 +21,6 @@ const cols = { lg: 4, md: 4, sm: 1, xs: 1, xxs: 1 };
 
 const Dashboard = () => {
     const { isLoading, isFilter } = useAPI();
-
-    // eslint-disable-next-line no-unused-expressions
-    // theme === 'dark' ? setSelectedRegion(regionOptions) : setSelectedRegion(regionOptionsLight);
 
     return (
         <div>

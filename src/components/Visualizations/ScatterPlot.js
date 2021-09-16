@@ -29,7 +29,8 @@ const ScatterPlot = () => {
                 yFormat={(e) => `$${Math.round(e)}`}
                 // colors={theme === 'dark' ? getColorDark : getColorLight}
                 // colors={theme === 'dark' ? { scheme: 'paired' } : { scheme: 'nivo' }}
-                colors={theme === 'dark' ? ['#00C49F'] : ['#0088FE']}
+                colors={theme === 'dark' ? ['rgb(0,196,159,0.7)'] : ['rgb(0,136,254,0.7)']}
+                // colors={theme === 'dark' ? ['#00C49F'] : ['#0088FE']}
                 blendMode="normal"
                 nodeSize={(e) => Math.abs((e.x - min) / (max - min)) * 40}
                 axisTop={null}
