@@ -22,7 +22,7 @@ const Filters = () => {
     } = useAPI();
 
     return (
-        <div className=" absolute right-0 top-14 flex flex-col space-y-3 w-[100] dark:bg-gray-700 bg-gray-300 shadow-md px-2 py-3 my-3 z-20 transition-all">
+        <div className=" absolute right-0 top-14 flex flex-col space-y-3 sm:w-[100] dark:bg-gray-700 bg-gray-300 shadow-md px-2 py-3 my-3 z-20 transition-all">
             <div className="text-gray-900 dark:text-white border-b-2 border-gray-800 dark:border-gray-100">
                 Filters
             </div>
@@ -30,7 +30,7 @@ const Filters = () => {
                 <div className="mb-2">
                     <div className="text-gray-900 dark:text-white my-2 ml-1">Year</div>
                     <SingleSelect
-                        className="w-96"
+                        className="sm:w-96"
                         options={yearOptions}
                         defaultValue={yearOptions[0]}
                         filterOptions={yearOptions}
@@ -40,7 +40,7 @@ const Filters = () => {
                 <div className="my-2">
                     <div className="text-gray-900 dark:text-white my-2 ml-1">Region</div>
                     <MultiSelect
-                        className="w-96"
+                        className="sm:w-96"
                         filterOptions={regionOptions}
                         value={selectedRegion}
                         setValue={setSelectedRegion}
@@ -50,7 +50,7 @@ const Filters = () => {
                 <div className="my-2">
                     <div className="text-gray-900 dark:text-white my-2 ml-1">Segment</div>
                     <MultiSelect
-                        className="w-96"
+                        className="sm:w-96"
                         filterOptions={segmentOptions}
                         value={selectedSegment}
                         setValue={setSelectedSegment}
@@ -60,7 +60,7 @@ const Filters = () => {
                 <div className="my-2">
                     <div className="text-gray-900 dark:text-white my-2 ml-1">Category</div>
                     <MultiSelect
-                        className="w-96"
+                        className="sm:w-96"
                         filterOptions={categoryOptions}
                         value={selectedCategory}
                         setValue={setSelectedCategory}

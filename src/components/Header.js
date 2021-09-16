@@ -10,7 +10,7 @@ const Header = () => {
     return (
         // <nav className="sticky top-0 z-30 flex justify-center items-center w-full px-4 py-4 my-0 mb-8 backdrop-filter backdrop-blur-lg bg-opacity-10 firefox:bg-opacity-90 border-b border-primary">
         <nav className="sticky top-0 z-30 flex justify-between items-center w-full shadow-md p-4 backdrop-filter backdrop-blur-lg bg-opacity-10 firefox:bg-opacity-90">
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3 md:mb-0 ml-0 md:ml-4 ">
+            <h3 className="sm:text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3 md:mb-0 ml-0 md:ml-4 ">
                 Superstore Dashboard
             </h3>
             <div className="flex">
