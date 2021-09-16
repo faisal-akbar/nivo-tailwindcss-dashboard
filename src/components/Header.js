@@ -8,9 +8,10 @@ const Header = () => {
     console.log('context', salesByDate);
     console.log(isLoading);
     return (
-        <header className="flex justify-between items-center bg-gray-50 dark:bg-gray-900 shadow-md p-4 backdrop-filter backdrop-blur-lg">
+        // <nav className="sticky top-0 z-30 flex justify-center items-center w-full px-4 py-4 my-0 mb-8 backdrop-filter backdrop-blur-lg bg-opacity-10 firefox:bg-opacity-90 border-b border-primary">
+        <nav className="sticky top-0 z-30 flex justify-between items-center w-full shadow-md p-4 backdrop-filter backdrop-blur-lg bg-opacity-10 firefox:bg-opacity-90">
             <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3 md:mb-0 ml-0 md:ml-4 ">
-                Simple Superstore Dashboard
+                Superstore Dashboard
             </h3>
             <div className="flex">
                 <FilterToggle />
@@ -36,7 +37,8 @@ const Header = () => {
                     </svg>
                 </div>
             </div>
-        </header>
+        </nav>
+        // </nav>
     );
 };
 
