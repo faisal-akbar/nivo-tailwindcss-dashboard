@@ -9,8 +9,8 @@ const StackedBarChart = () => {
     const { barChartData, initialValueObj } = useAPI();
     const { theme } = useContext(ThemeContext);
 
-    console.log('Stacked', barChartData);
-    console.log('ini Stacked', initialValueObj);
+    // console.log('Stacked', barChartData);
+    // console.log('ini Stacked', initialValueObj);
 
     const colorsLight = {
         East: 'rgb(232, 193, 160,0.8)',

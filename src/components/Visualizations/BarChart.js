@@ -6,7 +6,7 @@ import { ThemeContext } from '../Theme/themeContext';
 
 const BarChart = () => {
     const { barChartTopData } = useAPI();
-    console.log(barChartTopData);
+    // console.log(barChartTopData);
     const { theme } = useContext(ThemeContext);
 
     return (

@@ -10,8 +10,7 @@ const MultiLineChartLatestMonth = () => {
     const { latestMonthMultiLineChartData } = useAPI();
     const customDate = (date, format = 'MMM DD, YY') => moment(date).format(format);
 
-    console.log('latest', latestMonthMultiLineChartData);
-    // console.log('group by region and d', test);
+    // console.log('latest', latestMonthMultiLineChartData);
 
     const { theme } = useContext(ThemeContext);
     return (

@@ -13,7 +13,7 @@ const ScatterPlot = () => {
 
     const min = Math.min(...sortedData.map((item) => item.Sales));
     const max = Math.max(...sortedData.map((item) => item.Sales));
-    console.log('min max', min, max);
+    // console.log('min max', min, max);
 
     return (
         <>

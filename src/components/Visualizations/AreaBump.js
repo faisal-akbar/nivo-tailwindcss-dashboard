@@ -75,19 +75,17 @@ const AreaBump = () => {
                     legendPosition: 'middle',
                     legendOffset: 35,
                 }}
-                tooltip={(e) => {
-                    console.log(e);
-                    return (
-                        <div className="relative">
-                            <div className="tooltip">
-                                <div>Region: {e.serie.id}</div>
-                            </div>
-                            <svg className="tooltip-arrow" width="8" height="8">
-                                <rect x="12" y="-10" width="8" height="8" transform="rotate(45)" />
-                            </svg>
+                tooltip={(e) => (
+                    // console.log(e);
+                    <div className="relative">
+                        <div className="tooltip">
+                            <div>Region: {e.serie.id}</div>
                         </div>
-                    );
-                }}
+                        <svg className="tooltip-arrow" width="8" height="8">
+                            <rect x="12" y="-10" width="8" height="8" transform="rotate(45)" />
+                        </svg>
+                    </div>
+                )}
             />
         </>
     );
